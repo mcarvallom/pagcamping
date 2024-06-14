@@ -1,0 +1,124 @@
+.navbar-expand-lg .navbar-nav{
+    align-items: center;
+}
+.carousel-control-prev-icon{
+    background-image: url("");
+}
+.carousel-control-next-icon{
+    background-image: url("");
+
+}
+.imagen{
+    float:right;
+}
+#enlacesBottom{
+    --bs-list-group-bg: transparent;
+    --bs-list-group-border-color:  transparent;
+}
+
+.buscador{
+    display: contents;
+    min-width: max-content;
+}
+.testimonios{
+    min-width:min-content
+}
+#perfilCarrito{
+    margin-top:0;
+    margin-bottom:0;
+    margin-right: 10px;
+    word-spacing:10px;
+}
+.btn-primary{
+    --bs-btn-bg: rgb(47, 93, 98);
+    --bs-btn-border-color: rgb(47, 93, 98);
+    --bs-btn-hover-bg: rgb(47, 93, 98);
+    --bs-btn-hover-border-color: rgb(47, 93, 98);
+    --bs-btn-active-bg: rgb(47, 93, 98);
+    --bs-btn-active-border-color: ;
+}
+
+.precio1{
+    background-color: rgb(189, 236, 255);
+}
+
+#descripcionPrecios{
+    margin-left: 2%;
+    margin-right: 2%;
+    align-items: center;
+}
+
+#imagenproducto{
+    width: 50%;
+    display: block;
+    align-self: center;
+    margin-top: 25px;
+    
+}
+
+#ListaNosotros {
+    padding-left: inherit;
+    text-align: center;
+}
+
+#fondo{
+    background-color: rgb(223, 238, 234);
+    
+}
+
+#cards{
+    height: 100%;
+   
+}
+.navbar-expand-lg .navbar-nav{
+    align-items: center;
+}
+.carousel-control-prev-icon{
+    background-image: url("");
+}
+.carousel-control-next-icon{
+    background-image: url("");
+
+}
+.imagen{
+    float:right;
+}
+#enlacesBottom{
+    --bs-list-group-bg: transparent;
+    --bs-list-group-border-color:  transparent;
+}
+
+.d-flex{
+    display: contents;
+}
+#perfilCarrito{
+    margin-top:0;
+    margin-bottom:0;
+    margin-right: 10px;
+    word-spacing:10px;
+}
+.btn-primary{
+    --bs-btn-bg: rgb(47, 93, 98);
+    --bs-btn-border-color: rgb(47, 93, 98);
+    --bs-btn-hover-bg: rgb(47, 93, 98);
+    --bs-btn-hover-border-color: rgb(47, 93, 98);
+    --bs-btn-active-bg: rgb(47, 93, 98);
+    --bs-btn-active-border-color: ;
+}
+
+.precio1{
+    background-color: rgb(223, 238, 234);
+   
+   
+}
+
+
+
+.footerWeb{
+    padding-bottom: 60px;
+}
+/*------------------------------------------------*/
+
+
+
+/*------------------------------------------------*/

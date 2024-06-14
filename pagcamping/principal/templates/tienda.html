@@ -1,0 +1,314 @@
+{% extends "navBar.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <title> Tienda</title>
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="estilosbootstrap.scss">
+  <link rel="stylesheet" href="scss/_variables.scss">
+  <link rel="stylesheet" href="cony.css">
+</head>
+
+<body>
+
+  {% block body %}
+  <!--Inicio tienda-->
+  <div id="fondo" style="padding: 20px;">
+    <h1 style="text-align:center;">Tienda </h1>
+    <h6 style="text-align: center;">¿Se te olvidó algo? Nosotros te ayudamos.</h6>
+
+    <!--Sección 1-->
+
+    <div class="container text-center">
+      <div clas="row">
+        <div class="col -lg-7">
+          <div class="row ">
+            <div class="col -lg-4">
+              <a class="nav-link" href="#Productos">
+                <img src="imagenesTienda/icono1.png" width="15%"></a>
+              <a class="nav-link" href="#Productos">Productos</a>
+            </div>
+            <div class="col -lg-4">
+              <a class="nav-link" href="#utencilios">
+                <img src="imagenesTienda/Icono2.png" href="#utencilios" width="15%">
+              </a>
+              <a class="nav-link" href="#utencilios">Utencilios</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!--Cards con productos-->
+    <div class="container" style="margin-top: 30px;">
+      <h4 id="Productos" style="text-align: center;">Productos</h4>
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-md-4 g-3">
+        <div class="col">
+          <div id="cards" class="card border-0 bg-light">
+            <img id="imagenproducto" src="imagenesTienda/carbon.webp" alt="Carbón">
+            <div id="cuerpo" class="row align-items-end card-body">
+              <h5 class="card-text">Carbón</h5>
+              <p class="card-text">$3.500</p>
+              <div class="row d-grid gap-2 d-md-flex d-flex justify-content-center">
+                <div class="row d-grid gap-2 d-md-flex justify-content-md-end">
+                  <button id="open-popup1" class="col-sm btn btn-primary" role='button'>Detalles</button>
+                  <button id="agregarc1" onclick="AgregarArticulo1()" class="col-sm btn btn-outline-success" 
+                    role="button">Agregar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div id="cards" class="card border-0 bg-light">
+            <img id="imagenproducto" src="imagenesTienda/agua.webp" alt="Agua">
+            <div id="cuerpo" class="row align-items-end card-body">
+              <h5 class="card-text">Agua</h5>
+              <p class="card-text">$2.900</p>
+              <div class="row d-grid gap-2 d-md-flex d-flex justify-content-center">
+                <div class="row d-grid gap-2 d-md-flex justify-content-md-end">
+                  <button id="open-popup2" class="col-sm btn btn-primary" href="" role='button'>Detalles</button>
+                  <button id="agregarc2" onclick="AgregarArticulo2()" class="col-sm btn btn-outline-success" href=""
+                    role="button">Agregar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div id="cards" class="card border-0 bg-light">
+            <img id="imagenproducto" src="imagenesTienda/bolsas.webp" alt="Bolsa basura">
+            <div id="cuerpo" class="row align-items-end card-body">
+              <h5 class="card-text">Bolsas de basura</h5>
+              <p class="card-text">$1.900</p>
+              <div class="row d-grid gap-2 d-md-flex d-flex justify-content-center">
+                <div class="row d-grid gap-2 d-md-flex justify-content-md-end">
+                  <button id="open-popup3" class="col-sm btn btn-primary" href="" role='button'>Detalles</button>
+                  <button id="agregarc3" onclick="AgregarArticulo3()" class="col-sm btn btn-outline-success" href=""
+                    role="button">Agregar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div id="cards" class="card border-0 bg-light">
+            <img id="imagenproducto" src="imagenesTienda/sal.jpg" alt="Sal">
+            <div id="cuerpo" class="row align-items-end card-body">
+              <h5 class="card-text">Sal</h5>
+              <p class="card-text">$1.390</p>
+              <div class="row d-grid gap-2 d-md-flex d-flex justify-content-center">
+                <div class="row d-grid gap-2 d-md-flex justify-content-md-end">
+                  <button id="open-popup4" class="col-sm btn btn-primary" href="" role='button'>Detalles</button>
+                  <button id="agregarc4" onclick="AgregarArticulo4()" class="col-sm btn btn-outline-success" href=""
+                    role="button">Agregar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div id="cards" class="card border-0 bg-light">
+            <img id="imagenproducto" src="imagenesTienda/azucar.webp" alt="Azúcar">
+            <div id="cuerpo" class="row align-items-end card-body">
+              <h5 class="card-text">Azúcar</h5>
+              <p class="card-text">$1.590</p>
+              <div class="row d-grid gap-2 d-md-flex d-flex justify-content-center">
+                <div class="row d-grid gap-2 d-md-flex justify-content-md-end">
+                  <button id="open-popup5" class="col-sm btn btn-primary" href="" role='button'>Detalles</button>
+                  <button id="agregarc5" onclick="AgregarArticulo5()" class="col-sm btn btn-outline-success" href=""
+                    role="button">Agregar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div id="cards" class="card border-0 bg-light">
+            <img id="imagenproducto" src="imagenesTienda/aceite.jpg" alt="Aceite">
+            <div id="cuerpo" class="row align-items-end card-body">
+              <h5 class="card-text">Aceite</h5>
+              <p class="card-text">$2.300</p>
+              <div class="row d-grid gap-2 d-md-flex d-flex justify-content-center">
+                <div class="row d-grid gap-2 d-md-flex justify-content-md-end">
+                  <button id="open-popup6" class="col-sm btn btn-primary" href="" role='button'>Detalles</button>
+                  <button id="agregarc6" onclick="AgregarArticulo6()" class="col-sm btn btn-outline-success" href=""
+                    role="button">Agregar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!--Cards de Utencilios-->
+    <div class="container" style="margin-top: 30px;">
+      <h4 id="utencilios" style="text-align: center;">Utencilios</h4>
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <div class="col">
+          <div class="card border-0 bg-light">
+            <img id="imagenproducto" src="imagenesTienda/gas.jpg" alt="Gas">
+            <div id="cuerpo" class="row align-items-end card-body">
+              <h5 class="card-text">Gas</h5>
+              <p class="card-text">$2.000</p>
+              <div class="row d-grid gap-2 d-md-flex d-flex justify-content-center">
+                <div class="row d-grid gap-2 d-md-flex justify-content-md-end">
+                  <button id="open-popup7" class="col-sm btn btn-primary" href="" role='button'>Detalles</button>
+                  <button id="agregarc7" onclick="AgregarArticulo7()" class="col-sm btn btn-outline-success" href="" role="button">Agregar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card border-0 bg-light">
+            <img id="imagenproducto" src="imagenesTienda/saco de dormir.webp" alt="Saco">
+            <div id="cuerpo" class="row align-items-end card-body">
+              <h5 class="card-text">Saco de dormir</h5>
+              <p class="card-text">$45.000</p>
+              <div class="row d-grid gap-2 d-md-flex d-flex justify-content-center">
+                <div class="row d-grid gap-2 d-md-flex justify-content-md-end">
+                  <button id="open-popup8" class="col-sm btn btn-primary" href="" role='button'>Detalles</button>
+                  <button id="agregarc8" onclick="AgregarArticulo8()" class="col-sm btn btn-outline-success" href="" role="button">Agregar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card border-0 bg-light">
+            <img id="imagenproducto" src="imagenesTienda/silla camping.png" alt="Silla">
+            <div id="cuerpo" class="row align-items-end card-body">
+              <h5 class="card-text">Silla plegable</h5>
+              <p class="card-text">$23.500</p>
+              <div class="row d-grid gap-2 d-md-flex d-flex justify-content-center">
+                <div class="row d-grid gap-2 d-md-flex justify-content-md-end">
+                  <button id="open-popup9" class="col-sm btn btn-primary" href="" role='button'>Detalles</button>
+                  <button id="agregarc9" onclick="AgregarArticulo9()" class="col-sm btn btn-outline-success" href="" role="button">Agregar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+  </div>
+  </div>
+  </div>
+</div>
+   
+{% endblock  %}
+
+   <!--Pop Ups-->
+   <div id="containers-modal ">
+    <div class="modal-container" id="modal_container1">
+      <div id="myModal" class="modal1">
+        <h1>Carbón</h1>
+        <img id="imgpopup" src="imagenesTienda/carbon.webp" alt="Carbón">
+        <p>La loma premium</p>
+        <p>Valor $3.500</p>
+        <p>Cantidad: 1 kilo</p>
+        <button id="closemodal1" class="col-sm btn btn-primary">Cerrar</button>
+        <button id="agregapu1" onclick="AgregarArticuloPu1()" class="col-sm btn btn-outline-success">Agregar</button>
+      </div>
+    </div>
+    <div class="modal-container" id="modal_container2">
+      <div id="myModal" class="modal1">
+        <h1>Agua </h1>
+        <img id="imgpopup" src="imagenesTienda/agua.webp" alt="Agua">
+        <p>Benedictino</p>
+        <p>Valor: $2.900</p>
+        <p>Cantidad: 1 litro</p>
+        <button id="closemodal2" class="col-sm btn btn-primary">Cerrar</button>
+        <button id="agregapu2" onclick="AgregarArticuloPu2()" class="col-sm btn btn-outline-success">Agregar</button>
+      </div>
+    </div>
+    <div class="modal-container" id="modal_container3">
+      <div id="myModal" class="modal1">
+        <h1>Bolsas de basura </h1>
+        <img id="imgpopup" src="imagenesTienda/bolsas.webp" alt="Bolsas">
+        <p>Superior</p>
+        <p>Valor: $1.900</p>
+        <p>Cantidad: 5 bolsas</p>
+        <button id="closemodal3" class="col-sm btn btn-primary">Cerrar</button>
+        <button id="agregapu3" onclick="AgregarArticuloPu3()" class="col-sm btn btn-outline-success">Agregar</button>
+      </div>
+    </div>
+    <div class="modal-container" id="modal_container4">
+      <div id="myModal" class="modal1">
+        <h1>Sal</h1>
+        <img id="imgpopup" src="imagenesTienda/sal.jpg" alt="Sal">
+        <p>Océanica</p>
+        <p>Valor: $1.390</p>
+        <p>Cantidad: 1 kilo</p>
+        <button id="closemodal4" class="col-sm btn btn-primary">Cerrar</button>
+        <button id="agregapu4" onclick="AgregarArticuloPu4()" class="col-sm btn btn-outline-success">Agregar</button>
+      </div>
+    </div>
+    <div class="modal-container" id="modal_container5">
+      <div id="myModal"class="modal1">
+        <h1>Azúcar</h1>
+        <img id="imgpopup" src="imagenesTienda/azucar.webp" alt="Azúcar">
+        <p>Iansa</p>
+        <p>Valor: $1.590</p>
+        <p>Cantidad: 1 kilo</p>
+        <button id="closemodal5" class="col-sm btn btn-primary">Cerrar</button>
+        <button id="agregapu5" onclick="AgregarArticuloPu5()" class="col-sm btn btn-outline-success">Agregar</button>
+      </div>
+    </div>
+    <div class="modal-container" id="modal_container6">
+      <div id="myModal"class="modal1">
+        <h1>Aceite </h1>
+        <img id="imgpopup" src="imagenesTienda/aceite.jpg" alt="Aceite">
+        <p>Miraflores</p>
+        <p>Valor: $2.300</p>
+        <p>Cantidad: 1 litro</p>
+        <button id="closemodal6" class="col-sm btn btn-primary">Cerrar</button>
+        <button id="agregapu6" onclick="AgregarArticuloPu6()" class="col-sm btn btn-outline-success">Agregar</button>
+      </div>
+    </div>
+    <div class="modal-container" id="modal_container7">
+      <div id="myModal"class="modal1">
+        <h1>Gas </h1>
+        <img id="imgpopup" src="imagenesTienda/gas.jpg" alt="Gas">
+        <p>Doite</p>
+        <p>Valor: $2.000</p>
+        <p>Cantidad: 227 grs</p>
+        <button id="closemodal7" class="col-sm btn btn-primary">Cerrar</button>
+        <button id="agregapu7" onclick="AgregarArticuloPu7()" class="col-sm btn btn-outline-success">Agregar</button>
+      </div>
+    </div>
+    <div class="modal-container" id="modal_container8">
+      <div id="myModal"class="modal1">
+        <h1>Saco de dormir </h1>
+        <img id="imgpopup" src="imagenesTienda/saco de dormir.webp" alt="Saco">
+        <p>Discovery</p>
+        <p>Valor: $ 45.000</p>
+        <p>Cantidad: 1 unidad</p>
+        <button id="closemodal8" class="col-sm btn btn-primary">Cerrar</button>
+        <button id="agregapu8" onclick="AgregarArticuloPu8()" class="col-sm btn btn-outline-success">Agregar</button>
+      </div>
+    </div>
+    <div class="modal-container" id="modal_container9">
+      <div id="myModal"class="modal1">
+        <h1>Silla </h1>
+        <img id="imgpopup" src="imagenesTienda/silla camping.png" alt="Silla">
+        <p>Dam</p>
+        <p>Valor: $23.500</p>
+        <p>Cantidad: 1 unidad</p>
+        <button id="closemodal9" class="col-sm btn btn-primary">Cerrar</button>
+        <button id="agregapu9" onclick="AgregarArticuloPu9()" class="col-sm btn btn-outline-success">Agregar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <script src="cony.js"></script>
+
+</body>
+</html>

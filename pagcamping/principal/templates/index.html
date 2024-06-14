@@ -1,0 +1,144 @@
+{% extends "navBar.html" %}
+{% load static %}
+<head>
+  <title>Inicio</title>
+</head>
+
+{% block body %}
+<script>
+  $(document).ready(function(){
+    $('#Modal').modal('show');
+  });
+</script>
+<script src="{% static 'marc/jsMarc/index.js'%}"></script>
+<!--Modal-->
+  <div id="carouselExampleAutoplaying1" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img height="20%" src="{% static 'imagenes/imagenesCarrusel/carrusel1.png'%}" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img height="20%" src="{% static 'imagenes/imagenesCarrusel/carrusel2.png'%}" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img height="20%" src="{% static 'imagenes/imagenesCarrusel/carrusel3.png'%}" class="d-block w-100" alt="...">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying1" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Anterior</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying1" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Siguiente</span>
+    </button>
+  </div>
+
+  <!--Texto promocional-->
+  <div id="fondo"></div>
+  <br></br>
+  <h1 style="text-align: center;">Bienvenidos a nuestros camping</h1>
+  <br></br>
+  <p style="text-align: center;">Ven y disfruta junto a tu familia y amigos, tenemos precios asequibles y una tienda
+    virtual donde podrás arrendar accesorios en caso que te hagan falta.</p>
+  <br></br>
+
+
+  <!--Aquí puse una fila para mis dos columnas de los testimonios-->
+  <div class="Testimonios" style="background-color: rgb(167, 196, 188);">
+    <br></br>
+  <div class="container text-center">
+    <h1 style="text-align: center;">Testimonios</h1>
+    <br></br>
+    <div class="testimonios d-flex">
+    <div class="row">
+      <div class="col-sm  ">
+        <!--Aqui pondré un carrusel que tenga las Card-->
+        <div id="carouselExampleAutoplaying2" class="carousel slide" data-bs-ride="carousel">
+          
+          <div class="carousel-inner">
+              <div class="carousel-item active">
+                <div class="d-flex justify-content-center align-items-center h-100">
+                <div class="card text-center" style="width: 50%; height:25rem;">
+                  <img src="{% static 'imagenes/imagenes/Marco.jpeg'%}"  class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">Marco</h5>
+                    <p class="card-text">Fue una experiencia bonita, lo pase super bien junto a mis amigos...</p>
+                    
+                  </div>
+                </div>
+              </div>
+              </div>
+              <div class="carousel-item">
+                <div class="d-flex justify-content-center align-items-center h-100">
+                <div class="card" style="width: 50%;height: 25rem;">
+                  <img src="{% static 'imagenes/imagenes/Kony.jpeg'%}" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">Constanza</h5>
+                    <p class="card-text">Excelente lugar. Todo limpio y ordenado, sobre todo los baños y la zona de parrillas. 
+                      Ideal para escaparse un fin de semana o ir con la familia. 
+                      Sin duda volveremos...</p>
+                  </div>
+                </div>
+                </div>
+              </div>
+
+              <div class="carousel-item">
+                <div class="d-flex justify-content-center align-items-center h-100">
+                <div class="card" style="width: 50%;height: 25rem;">
+                  <img src="{% static 'imagenes/imagenes/nikole.avif'%}" class="card-img-top v-100" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">Nikole</h5>
+                    <p class="card-text">¡Nos encantó! El lugar es super amplio y tranquilo y las opciones que ofrecen son variadas.
+                      Nos encantó la idea de que tengan una tienda para así preocuparnos solo de la comida y de disfrutar.</p>
+                  </div>
+                </div>
+              </div>
+              </div>
+            </div>
+
+            <button class="carousel-control-prev " type="button" data-bs-target="#carouselExampleAutoplaying2" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Anterior</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying2" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Siguiente</span>
+            </button>
+        </div>
+      </div>
+      <div class="col-sm">
+        <br>
+        <img src="{% static 'imagenes/imagenes/camping1.webp'%}" style="width: 100%">
+        </br>
+      </div>
+    </div>
+  </div>
+  </div>
+  <br></br>
+</div>
+<div class="PetFriendly" style="background-color: rgba(205, 255, 238, 0.619);">
+  <br></br>
+  <h1 style="text-align: center;">PetFriendly</h1>
+  <br></br>
+  <p style="text-align: center;">Ven Con tu mascota. En Camping somos PetFriendly</p>
+  <br></br>
+  <p style="text-align: center;"><img src="{% static 'imagenes/imagenes/Petfriendly camping.jpeg'%}"  width="60%"></p>
+  <br style="height: 50px;"></br>
+</div>
+<div class="encuentranos">
+  <br></br>
+  <h1 style="text-align: center;">Encuéntranos</h1>
+  <br></br>
+  <div id="map">
+  </div>
+  
+  <script src="{% static 'pagcamping/principal/static/marc/jsMarc/index.js'%}"></script>
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJ6hbihectpR4AQW7TrMFd5TdsU6j9-iM&callback=initMap">
+</script>
+</div>
+
+</div>
+
+  {% endblock  %}
