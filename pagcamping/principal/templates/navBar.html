@@ -11,8 +11,9 @@
     <link rel="stylesheet" href="{% static 'estilo.css' %}">
     <link rel="stylesheet" href="{% static 'nikole.css' %}">
     <link rel="stylesheet" href="{% static 'marc/cssMarc/marc.css' %}">
+    <link rel="stylesheet" href="{% static 'cony/cony.css' %}">
     <style>
-      a {
+      a { 
           border: none; 
           text-decoration: underline; 
           display: inline-block; 
@@ -68,13 +69,14 @@
             <a class="nav-link" href="{% url 'nosotros' %}">Sobre nosotros</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="precios.html">Precios</a>
+            <a class="nav-link" href="{% url 'precios' %}">Precios</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="tienda.html">Tienda</a>
+            <a class="nav-link" href="{% url 'tienda' %}">Tienda</a>
           </li>
         </ul>
       </div>
+
         <!--Buscador-->
         <div class="col">
         <form id="d-flex" class="d-flex" style="width: 100%;" role="search">
@@ -89,7 +91,7 @@
           <ul class="nav justify-content-end">
             <li class="nav-item">
               
-                <a class="nav-link "aria-current="page" href="">
+                <a class="nav-link "aria-current="page" href="{% url 'carrito' %}">
                   <img src="{% static 'imagenes/imagenes/carrito.png' %}" style="width: 40px;">
                 </a>
             
@@ -104,6 +106,7 @@
           </ul>
           
       </div>
+
       </div>
     </div>
   </div>
@@ -127,8 +130,8 @@
         <a class="nav-link active" aria-current="page" href="{% url 'inicio'%}">Inicio</a>
         
         <a class="nav-link" href="{% url 'nosotros' %}">Sobre nosotros</a>
-        <a class="nav-link" href="precios.html">Precios</a>
-        <a class="nav-link" href="tienda.html">Tienda</a>
+        <a class="nav-link" href="{% url 'precios' %}">Precios</a>
+        <a class="nav-link" href="{% url 'tienda' %}">Tienda</a>
         <a class="nav-link" href="{% url 'perfil' %}"> Mi perfil </a>
       </ol>
     </div>
@@ -162,3 +165,5 @@
 </div>
 </body>
 </html>
+
+

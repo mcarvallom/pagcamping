@@ -1,0 +1,46 @@
+/*---------------------CARRITO---------------------------*/
+
+#totales{
+    text-align: center;
+    margin: 20%;
+
+}
+
+ .product-list {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: space-between; 
+    list-style: none; 
+}
+.product-item {
+    flex: 1; 
+    max-width: 30%; 
+    margin: 10px; 
+    border: 1px solid #ccc; 
+    padding: 10px;
+    text-align: center;
+}
+.buy-now-button {
+    display: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: rgb(47, 93, 98);;
+    color: #fff;
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+#cards2{
+    height: 100%;
+}
+
+#imagenproducto2{
+    width: 25%;
+    display: block;
+    align-self: center;
+    margin-top: 25px;
+}
+
+#cuerpo2{
+    margin-bottom: 10px;
+}

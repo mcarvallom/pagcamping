@@ -53,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'pagcamping.middleware.cart_middleware.InitVariablesMiddleware'
 ]
 
 ROOT_URLCONF = 'pagcamping.urls'
