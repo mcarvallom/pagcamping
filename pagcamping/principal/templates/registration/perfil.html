@@ -1,0 +1,48 @@
+{% extends "navBar.html" %}
+{% load static %}
+<head>
+  <title>Perfil</title>
+</head>
+
+{% block body %}
+
+<!-- Detalle cuenta-->
+<div class="imagenPerfil">
+
+
+  <div class="col align-self-center container text-center imagenPerfill" id="gallery"></div>
+  <script src="{% static 'nikole.js'%}"></script>
+
+
+
+
+</div>
+  <h3 id="nombreUsuario" style="text-align: center;">{{ user.username }}</h3>
+  <br>
+  <h4 id="correoUsuario" style="text-align: center;">{{ user.email }}</h4>
+  <br>
+</div>
+
+
+<br>
+  <div class="col-12 m-auto text-center">
+
+    <a href="editarPerfil.html">
+      <button type="button" class="btn btn-primary">Editar perfil</button>
+    </a> 
+  </div>
+  <br>
+  <br>
+  {% if request.user.is_authenticated %}
+    <div class="col-12 m-auto text-center">
+      <a href="{% url 'exit' %}">
+        <button type="button" class="btn btn-primary">Cerrar sesión</button>
+      </a> 
+    </div>
+  {% endif %}
+  <br>
+  <br>
+  <br>
+
+
+  {% endblock  %}

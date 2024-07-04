@@ -21,13 +21,14 @@
     min-width: max-content;
 }
 .testimonios{
-    min-width:min-content
+    min-width: min-content;
 }
 #perfilCarrito{
     margin-top:0;
     margin-bottom:0;
     margin-right: 10px;
     word-spacing:10px;
+    display: flex;
 }
 .btn-primary{
     --bs-btn-bg: rgb(47, 93, 98);
@@ -91,12 +92,7 @@
 .d-flex{
     display: contents;
 }
-#perfilCarrito{
-    margin-top:0;
-    margin-bottom:0;
-    margin-right: 10px;
-    word-spacing:10px;
-}
+
 .btn-primary{
     --bs-btn-bg: rgb(47, 93, 98);
     --bs-btn-border-color: rgb(47, 93, 98);
@@ -122,3 +118,11 @@
 
 
 /*------------------------------------------------*/
+
+
+/* Específicamente para imágenes dentro de enlaces */
+a {
+    display: block;
+    border: none; /* Eliminar cualquier borde que pueda tener la imagen */
+    text-decoration: unset;
+}

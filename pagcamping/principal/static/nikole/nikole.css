@@ -1,0 +1,32 @@
+#gallery {
+    position: relative;
+}
+
+#gallery img {
+    width: 300px;
+    height: 300px; 
+    object-fit: cover;
+    margin: 10px;
+    border-radius: 50%; 
+}
+
+#editarPerfil{
+    margin: 100px;
+}
+
+.imagenPerfill{
+    position: absolute;
+}
+
+body{
+    background-color: rgb(223,238,234);
+}
+
+.containersc{
+    text-align: center;
+    margin-top: 10%;
+}
+
+#sc{
+    margin-top: 5%;
+}

@@ -41,44 +41,36 @@
   <br>
   <!--Formulario -->
   <div class="container">
-    <form class="row g-3">
-    <div class="col-md-4">
-      <label for="nombren" class="form-label">Nombre</label>
-      <input type="text" class="form-control" id="nombren" 
-      placeholder="Nombre">
-
-    </div>
-    <div class="col-md-4">
-      <label for="correon" class="form-label">Correo</label>
-      <input type="text" class="form-control" id="correon"  
-      placeholder="Correo electrónico">
-    </div>
-    <div class="col-md-4">
-      <label for="dominion" class="form-label">Dominio</label>
-      <div class="input-group has-validation">
-        <span class="input-group-text" id="inputGroupPrepend">@</span>
-        <input type="text" class="form-control" id="dominion" aria-describedby="inputGroupPrepend"  
-        placeholder="Por ejemplo: gmail.com">
+    <form class="row g-3" method="POST">
+      {% csrf_token %}
+      <div class="col-md-6">
+        <label for="nombren" class="form-label">Nombre</label>
+        {{ form.nombreContacto}}
       </div>
-    </div>
-    <div class="col-md-6">
-      <label for="mensajen" class="form-label">Mensaje</label>
-      <input type="text" class="form-control" id="mensajen" placeholder="Deja tu comentario">
-    </div>
 
-    <div class="col-12">
-      <br></br>
-      <div class="d-flex justify-content-center">
-      <button id="boton1" class="btn btn-primary" type="submit">Enviar</button>
-    </div>
-    </div>
-    <br></br>
-    <br></br>
-    <br></br>
-  </form>
-</div>
+      <div class="col-md-6">
+        <label for="correon" class="form-label">Correo</label>
+        {{ form.correoArriendo }}
+      </div>
+    
+      <div class="col-md-6">
+        <label for="mensajen" class="form-label">Mensaje</label>
+        {{ form.mensaje }}
+      </div>
 
-
-</div>
-
+      <div class="col-8">
+        <div class="d-flex justify-content-center">
+          {{mensaje}}
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="d-flex justify-content-center">
+          <button id="boton1" class="btn btn-primary" type="submit">Enviar</button>
+        </div>
+      </div>
+      <br>
+    </form>
+  </div>
+  <br></br>  <br></br>
+  
 {% endblock  %}

@@ -1,0 +1,61 @@
+{% extends "navBar.html" %}
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'cony/cony.css' %}">    
+    <title>Carrito de compras</title>
+</head>
+{% block body %}
+
+<br><br><br>
+<div class="container text-center">
+<div class="row align-items-start">
+    
+    <div class="col ">
+    <div class="container">
+        <div class="col">
+            {% for x,y in productos %}
+            <div class="cards2">
+                <div id="cards2" class="card border-0 bg-light"style="width: 18rem;">
+                    <img src="{{x.image}}" id="imagenproducto2" width="15%">
+                    <div id="cuerpo2" class="row align-items-end card-body">
+                        <span>{{x.nombreProducto}}</span>
+                        <span>${{x.precio}}</span>
+                        <span> Cantidad: {{y}}</span>
+                    <div class="btn-container">
+                        <a class="buy-now-button" href="{% url 'restar_producto' x.id %}">Quitar 1 producto</a>
+                        <a class="buy-now-button" href="{% url 'eliminar_producto' x.id %}">Eliminar todos del carrito</a>
+                    </div>
+                    </div>
+                </div>
+                <br><br>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    </div>
+    <div class="col ">
+    <div id= "totales">
+        {% if request.session.total_carrito == 0 %}
+        <p id="carritovacio"> ¡Ups! No hay productos en el carrito. 
+        <a href="{% url 'tienda' %}">Agrega algunos </a></p>
+        {% endif%}
+        
+            <p>Total unidades: <span id="unidades">{{request.session.total_carrito}}</span></p>
+            <p>Total precio: $ <span id="precio">{{suma_precios}}</span></p>
+
+            {% if request.session.total_carrito != 0 %}
+            <a class="buy-now-button" href="{% url 'comprar_carrito' %}" method="POST">Comprar</a>
+            <a class="buy-now-button" href="{% url 'vaciar_carrito' %}" >Vaciar carrito</a>
+            {% endif%}
+
+    </div>
+
+    </div>
+
+</div>
+</div>
+{% endblock  %} 
+
+
