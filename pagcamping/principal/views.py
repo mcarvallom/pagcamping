@@ -13,6 +13,8 @@ from django.dispatch import receiver
 from .forms import ContactoForm
 from django.db.models.signals import post_save
 from .models import Producto
+from .forms import CustomUserChangeForm
+
 # Create your views here.
 
 def inicio(request):
@@ -57,7 +59,6 @@ def register(request):
             login(request, user)
             return redirect('inicio')
     return render(request, 'registration/register.html', data)
-
 def mostrarPrecios(request):
     if request.method == 'POST':
         form = RentalForm(request.POST)
@@ -72,8 +73,6 @@ def mostrarPrecios(request):
     else:
         form = RentalForm()
     return render(request, 'precios.html', {'form': form})
-
-
 def carrito(request):
     productos = []
     for id, cantidad in request.session["carrito"].items():
@@ -82,8 +81,6 @@ def carrito(request):
     #productos = Producto.objects.filter(id__in=request.session["carrito"])
     suma_precios = sum([x[0].precio*x[1] for x in productos])
     return render(request, 'cart.html', {"productos": productos, "suma_precios":suma_precios, "carrito": request.session["carrito"]})
-
-
 def guardar_reserva_y_agregar_carrito(request):
     if 'carrito' not in request.session:
         request.session['carrito'] = {}
@@ -110,8 +107,6 @@ def guardar_reserva_y_agregar_carrito(request):
 
     # Redirigir al usuario al carrito
     return redirect('carrito')
-
-
 def agregar_producto(request,id):
     producto = Producto.objects.get(id=id)
     if str(producto.id) in request.session["carrito"].keys() and producto.cantidad > request.session["carrito"][str(producto.id)]:
@@ -121,23 +116,17 @@ def agregar_producto(request,id):
     else:
         pass
     return redirect('tienda')
-
 def eliminar_producto(request, id):
     del request.session["carrito"][str(id)]
     return redirect('carrito')
-
-
 def restar_producto(request, id):
     request.session["carrito"][str(id)] -=1
     if request.session["carrito"][str(id)] <= 0:
         del request.session["carrito"][str(id)]
     return redirect('carrito')
-
 def limpiar_carrito(request):
     request.session["carrito"] = {}
     return redirect('carrito')
-
-
 def comprar_carrito(request):
     productos = []
     for id, cantidad in request.session["carrito"].items():
@@ -153,3 +142,16 @@ def comprar_carrito(request):
     request.session["carrito"] = {}
     
     return render(request, 'index.html', {"mensaje":"Gracias por Comprar!!"})
+
+@login_required
+def editar_perfil(request):
+    if request.method == 'POST':
+        form = CustomUserChangeForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, '¡Perfil actualizado correctamente!')
+            return redirect('perfil')  # Cambia 'perfil' por la URL de tu perfil actual
+    else:
+        form = CustomUserChangeForm(instance=request.user)
+    
+    return render(request, 'registration/editarPerfil.html', {'form': form})

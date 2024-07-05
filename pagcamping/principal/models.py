@@ -1,8 +1,20 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django import forms
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Submit
 
 # Create your models here.
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'email']  # Campos que quieres editar
 
+    def __init__(self, *args, **kwargs):
+        super(UserProfileForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_method = 'post'
+        self.helper.add_input(Submit('submit', 'Actualizar'))
 class Cliente (models.Model):
     run         = models.CharField(max_length=10)
     dv          = models.CharField(max_length=1)
