@@ -91,17 +91,15 @@ def guardar_reserva_y_agregar_carrito(request):
     cant_carpas_menor4 = int(request.POST.get('cant_carpas_menor4', 0))
     cant_carpas_mayor4 = int(request.POST.get('cant_carpas_mayor4', 0))
 
-    # Agregar al carrito la cantidad de carpas hasta 4 personas (usando ID 10 como ejemplo)
     if cant_carpas_menor4 > 0:
-        producto_id_menor4 = '10'  # ID del producto para carpas hasta 4 personas
+        producto_id_menor4 = '10' 
         if producto_id_menor4 in request.session['carrito']:
             request.session['carrito'][producto_id_menor4] += cant_carpas_menor4
         else:
             request.session['carrito'][producto_id_menor4] = cant_carpas_menor4
 
-    # Agregar al carrito la cantidad de carpas más de 4 personas (usando ID 11 como ejemplo)
     if cant_carpas_mayor4 > 0:
-        producto_id_mayor4 = '11'  # ID del producto para carpas más de 4 personas
+        producto_id_mayor4 = '11'  
         if producto_id_mayor4 in request.session['carrito']:
             request.session['carrito'][producto_id_mayor4] += cant_carpas_mayor4
         else:
