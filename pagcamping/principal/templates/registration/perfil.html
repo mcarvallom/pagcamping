@@ -5,7 +5,13 @@
 </head>
 
 {% block body %}
-
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
 <!-- Detalle cuenta-->
 <div class="imagenPerfil">
 
@@ -37,6 +43,13 @@
     <div class="col-12 m-auto text-center">
       <a href="{% url 'exit' %}">
         <button type="button" class="btn btn-primary">Cerrar sesión</button>
+      </a> 
+    </div>
+    <br>
+    <br>
+    <div class="col-12 m-auto text-center">
+      <a href="{% url 'eliminarCuenta' %}">
+        <button type="button" class="btn btn-primary">Eliminar cuenta</button>
       </a> 
     </div>
   {% endif %}
