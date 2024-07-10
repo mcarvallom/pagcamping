@@ -4,14 +4,13 @@ from django.contrib.auth import authenticate,logout,login
 from .forms import CustomUserCreationForm
 from django.db import IntegrityError
 from .formArriendo import RentalForm
-from django.views.decorators.http import require_POST
-from django.contrib import messages
 from .models import Cliente
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
+from django.views.decorators.http import require_POST
+from django.contrib import messages
 from django.dispatch import receiver
 from .forms import ContactoForm
-from django.db.models.signals import post_save
 from .models import Producto
 from .forms import CustomUserChangeForm
 
@@ -30,7 +29,7 @@ def nosotros(request):
         formularioContacto = ContactoForm(data=request.POST)
         if formularioContacto.is_valid():
             formularioContacto.save()
-            data["mensaje"] = "Información de contacto envíada con éxito."
+            messages.success(request, "Información de contacto envíada con éxito.")
             return redirect (nosotros)
         else:
             data["form"] = formularioContacto
@@ -46,6 +45,7 @@ def precios(request):
     return render(request, 'precios.html')
 def exit(request):
     logout(request)
+    messages.success(request, "Sesión cerrada con éxito")
     return redirect('inicio')
 def register(request):
     data = {
@@ -104,17 +104,27 @@ def guardar_reserva_y_agregar_carrito(request):
 
     # Guardar la sesión
     request.session.modified = True
-
+    messages.success(request, "Reserva realizada con éxito")
     # Redirigir al usuario al carrito
     return redirect('carrito')
-def agregar_producto(request,id):
+def agregar_producto(request, id):
     producto = Producto.objects.get(id=id)
-    if str(producto.id) in request.session["carrito"].keys() and producto.cantidad > request.session["carrito"][str(producto.id)]:
-        request.session["carrito"][str(producto.id)] += 1
-    elif str(producto.id) not in request.session["carrito"].keys() and producto.cantidad > 0:
-        request.session["carrito"][str(producto.id)] = 1
+
+    # Verificar si existe el carrito en la sesión
+    if 'carrito' not in request.session:
+        request.session['carrito'] = {}
+
+    # Verificar si el producto ya está en el carrito y si hay suficiente cantidad disponible
+    if str(producto.id) in request.session['carrito'] and producto.cantidad > request.session['carrito'][str(producto.id)]:
+        request.session['carrito'][str(producto.id)] += 1
+    elif str(producto.id) not in request.session['carrito'] and producto.cantidad > 0:
+        request.session['carrito'][str(producto.id)] = 1
     else:
-        pass
+        messages.error(request, 'No se pudo agregar el producto al carrito.')
+
+    # Mensaje de éxito al agregar el producto al carrito
+    messages.success(request, f'Se agregó "{producto.nombreProducto}" al carrito.')
+
     return redirect('tienda')
 def eliminar_producto(request, id):
     del request.session["carrito"][str(id)]
@@ -129,20 +139,21 @@ def limpiar_carrito(request):
     return redirect('carrito')
 def comprar_carrito(request):
     productos = []
-    for id, cantidad in request.session["carrito"].items():
+    for id, cantidad in request.session['carrito'].items():
         producto = Producto.objects.get(id=id)
         productos.append((producto, cantidad))
         if cantidad > producto.cantidad:
-            return render(request, 'index.html', {"mensaje":"Error en la Compra"})
+            messages.error(request, f'No hay suficiente stock de "{producto.nombreProducto}" para completar la compra.')
+            
     
     for producto, cantidad in productos:
-        producto.cantidad = producto.cantidad - cantidad
+        producto.cantidad -= cantidad
         producto.save()
 
-    request.session["carrito"] = {}
-    
-    return render(request, 'index.html', {"mensaje":"Gracias por Comprar!!"})
+    request.session['carrito'] = {}
+    messages.success(request, '¡Compra realizada con éxito!')
 
+    return redirect('carrito')
 @login_required
 def editar_perfil(request):
     if request.method == 'POST':
@@ -155,3 +166,13 @@ def editar_perfil(request):
         form = CustomUserChangeForm(instance=request.user)
     
     return render(request, 'registration/editarPerfil.html', {'form': form})
+@login_required
+def eliminarCuenta(request):
+    user = request.user
+    if request.method == 'POST':
+        user.delete()
+        messages.success(request, 'Tu cuenta ha sido eliminada exitosamente.')
+        return redirect('inicio')
+
+    return render(request, 'eliminarCuenta.html')
+
