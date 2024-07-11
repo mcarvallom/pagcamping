@@ -1,33 +1,42 @@
 function validar_arriendo() {
     var nombre = document.getElementById("inputName").value;
+    var apellido = document.getElementById("inputApellido").value;
     var correo = document.getElementById("inputEmail4").value;
     var celular = parseInt(document.getElementById("inputCelular").value);
     var hastaCuatro = parseInt(document.getElementById("inputCarpaHastaCuatro").value);
     var sobreCuatro = parseInt(document.getElementById("inputSobreCuatro").value);
+    var fechaInicio = document.getElementById("inicioFecha").value;
+    var fechaFin = document.getElementById("finFecha").value;
 
+    // Convertir las fechas a objetos Date para la comparación
+    var fechaInicioDate = new Date(fechaInicio);
+    var fechaFinDate = new Date(fechaFin);
 
-    if (nombre === "" || correo === "" || isNaN(celular) || isNaN(hastaCuatro) || isNaN(sobreCuatro)) {
+    if (nombre === "" || apellido === "" || correo === "" || isNaN(celular) || isNaN(hastaCuatro) || isNaN(sobreCuatro) || fechaInicio === "" || fechaFin === "") {
         alert("Todos los campos deben estar llenados");
-       
+        return false;
     } else if (hastaCuatro < 0 || hastaCuatro > 10) {
         alert("Debe ingresar un número válido (0 a 10. El máximo de arriendo es de 10 carpas por tipo)");
-        
-    } else if (sobreCuatro < 0 || sobreCuatro > 10){
+        return false;
+    } else if (sobreCuatro < 0 || sobreCuatro > 10) {
         alert("Debe ingresar un número válido (0 a 10). El máximo de arriendo es de 10 carpas por tipo");
-        
+        return false;
+    } else if (hastaCuatro === 0 && sobreCuatro === 0) {
+        alert("Debe arrendar al menos un tipo de carpa (hasta 4 personas o sobre 4 personas)");
+        return false;
     } else if (celular < 100000000 || celular > 999999999) {
         alert("Debe ingresar un número de celular válido");
-       
+        return false;
+    } else if (fechaInicioDate >= fechaFinDate) {
+        alert("La fecha de inicio debe ser anterior a la fecha de término");
+        return false;
+   
     } else {
-        document.getElementById("nombreResp").textContent = nombre;
-        document.getElementById("emailResp").textContent = correo;
-        document.getElementById("celularResp").textContent = celular;
-        document.getElementById("hastaCuatroResp").textContent = hastaCuatro;
-        document.getElementById("sobreCuatroResp").textContent = sobreCuatro;
         alert("Se ha arrendado correctamente");
-    }    
-
+        return true;
+    }
 }
+
 
 function limpiar_formulario(){
 
@@ -36,9 +45,13 @@ function limpiar_formulario(){
         document.getElementById("celularResp").textContent = "";
         document.getElementById("hastaCuatroResp").textContent = "";        
         document.getElementById("sobreCuatroResp").textContent = "";
+        document.getElementById("hastaCuatroResp").textContent = "";
+        document.getElementById("fechaInicioResp").textContent = "";
+        document.getElementById("fechaFinResp").textContent = "";
         document.getElementById("formArriendo").reset();
 
 }
+
 
 
 //api perfil, cambio imagen
@@ -82,8 +95,5 @@ function modificarPerfil() {
 
    
 }
-
-
-
 
 

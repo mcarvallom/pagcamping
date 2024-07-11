@@ -2,6 +2,8 @@
 {% load static %}
 <head>
   <title>Inicio</title>
+  <link rel="stylesheet" href="{% static 'marc/cssMarc/marc.css' %}">
+
 </head>
 
 {% block body %}
@@ -12,13 +14,47 @@
         </div>
     {% endfor %}
 {% endif %}
+<!--Modal-->
+
 <script>
   $(document).ready(function(){
     $('#Modal').modal('show');
   });
 </script>
+
+<!-- Ventana emergente -->
+<div id="myModal" class="modal">
+  <div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">Mensaje</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+    </div>
+      
+      <div class="modal-body">
+        <p id="successMessage"></p>
+      </div>
+      
+      
+  </div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <script src="{% static 'marc/jsMarc/index.js'%}"></script>
-<!--Modal-->
+
   <div id="carouselExampleAutoplaying1" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active">
