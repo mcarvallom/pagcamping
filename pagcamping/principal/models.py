@@ -30,17 +30,21 @@ class Arriendo (models.Model):
     idArriendo     = models.CharField(primary_key=True, max_length=10)
     nombreArriendo  = models.CharField(max_length=60) 
     apellidoArriendo    = models.CharField(max_length= 60)
-    correoArriendo      = models.EmailField( max_length=80, blank=True, null=True )
+    correoArriendo      = models.EmailField(max_length=80)
     celularArriendo     = models.CharField(max_length=10)
-    cant_carpas_menor4  = models.IntegerField(default=0)
-    cant_carpas_mayor4  = models.IntegerField(default=0)
+    cant_carpas_menor4  = models.IntegerField()
+    cant_carpas_mayor4  = models.IntegerField()
     fecha_inicio_Arriento = models.DateField(null=False)
     fecha_fin_Arriendo    = models.DateField(null=False)
+
+    def clean(self):
+        if self.fecha_inicio_Arriento >= self.fecha_fin_Arriendo:
+            raise ValidationError("La fecha de inicio debe ser anterior a la fecha de término.")
  
 class Contacto (models.Model):
     idContacto   = models.IntegerField(primary_key=True)
     nombreContacto = models.CharField(max_length=60)
-    correoArriendo      = models.EmailField( max_length=80, blank=True, null=True )
+    correoArriendo      = models.EmailField( max_length=80, blank=False, null=False )
     mensaje      = models.CharField(max_length=255)
 
     def __str__(self):

@@ -29,18 +29,16 @@ def nosotros(request):
         formularioContacto = ContactoForm(data=request.POST)
         if formularioContacto.is_valid():
             formularioContacto.save()
-            messages.success(request, "Información de contacto envíada con éxito.")
+            messages.success(request, "Información de contacto enviada con éxito.")
             return redirect (nosotros)
         else:
             data["form"] = formularioContacto
-            data['mensaje'] = "Formulario con errores"
+            data['mensaje'] = "Campo email debe ser tipo hola@gmail.com"
 
     return render(request, 'nosotros.html', data)
-
 def tienda(request):
     productos_disponibles = Producto.objects.filter(disponible=True)
     return render(request, 'tienda.html', {'productos': productos_disponibles})
-
 def precios(request):
     return render(request, 'precios.html')
 def exit(request):
