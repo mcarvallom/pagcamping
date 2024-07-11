@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django import forms
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
+from django.core.exceptions import ValidationError
 
 # Create your models here.
 class UserProfileForm(forms.ModelForm):
@@ -32,8 +33,8 @@ class Arriendo (models.Model):
     apellidoArriendo    = models.CharField(max_length= 60)
     correoArriendo      = models.EmailField(max_length=80)
     celularArriendo     = models.CharField(max_length=10)
-    cant_carpas_menor4  = models.IntegerField()
-    cant_carpas_mayor4  = models.IntegerField()
+    cant_carpas_menor4  = models.IntegerField(default=1)
+    cant_carpas_mayor4  = models.IntegerField(default=0)
     fecha_inicio_Arriento = models.DateField(null=False)
     fecha_fin_Arriendo    = models.DateField(null=False)
 
