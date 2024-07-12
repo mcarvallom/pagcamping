@@ -23,12 +23,14 @@ class RentalForm(ModelForm):
         cleaned_data = super().clean()
         fecha_inicio = cleaned_data.get('fecha_inicio_Arriento')
         fecha_fin = cleaned_data.get('fecha_fin_Arriendo')
+        cant_carpas_menor4 = cleaned_data.get('cant_carpas_menor4')
+        cant_carpas_mayor4 = cleaned_data.get('cant_carpas_mayor4')
 
         if fecha_inicio and fecha_fin:
             if fecha_inicio >= fecha_fin:
                 raise ValidationError("La fecha de inicio debe ser anterior a la fecha de término.")
+        
+        if cant_carpas_menor4 == 0 and cant_carpas_mayor4 == 0:
+            raise ValidationError("Debe arrendar al menos un tipo de carpa (hasta 4 personas o sobre 4 personas).")
 
         return cleaned_data
-   
- 
-      

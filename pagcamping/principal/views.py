@@ -13,7 +13,7 @@ from django.dispatch import receiver
 from .forms import ContactoForm
 from .models import Producto
 from .forms import CustomUserChangeForm
-
+from .models import Arriendo
 # Create your views here.
 
 def inicio(request):
@@ -80,31 +80,45 @@ def carrito(request):
     suma_precios = sum([x[0].precio*x[1] for x in productos])
     return render(request, 'cart.html', {"productos": productos, "suma_precios":suma_precios, "carrito": request.session["carrito"]})
 def guardar_reserva_y_agregar_carrito(request):
-    if 'carrito' not in request.session:
-        request.session['carrito'] = {}
+    if request.method == 'POST':
+        form = RentalForm(request.POST)
+        if form.is_valid():
+            reserva = form.save()
 
-    cant_carpas_menor4 = int(request.POST.get('cant_carpas_menor4', 0))
-    cant_carpas_mayor4 = int(request.POST.get('cant_carpas_mayor4', 0))
+            if 'carrito' not in request.session:
+                request.session['carrito'] = {}
 
-    if cant_carpas_menor4 > 0:
-        producto_id_menor4 = '10' 
-        if producto_id_menor4 in request.session['carrito']:
-            request.session['carrito'][producto_id_menor4] += cant_carpas_menor4
+            cant_carpas_menor4 = reserva.cant_carpas_menor4
+            cant_carpas_mayor4 = reserva.cant_carpas_mayor4
+
+            if cant_carpas_menor4 > 0:
+                producto_id_menor4 = '10'
+                if producto_id_menor4 in request.session['carrito']:
+                    request.session['carrito'][producto_id_menor4] += cant_carpas_menor4
+                 
+                else:
+                    request.session['carrito'][producto_id_menor4] = cant_carpas_menor4
+                   
+
+            if cant_carpas_mayor4 > 0:
+                producto_id_mayor4 = '11'
+                if producto_id_mayor4 in request.session['carrito']:
+                    request.session['carrito'][producto_id_mayor4] += cant_carpas_mayor4
+                   
+                else:
+                    request.session['carrito'][producto_id_mayor4] = cant_carpas_mayor4
+                   
+
+            request.session.modified = True
+            messages.success(request, "Reserva realizada con éxito")
+            return redirect('carrito')
         else:
-            request.session['carrito'][producto_id_menor4] = cant_carpas_menor4
+            messages.error(request, "Hay errores en el formulario. Por favor, corríjalos. Ingrese fechas válidas y arrendar al menos un tipo de carpa.")
+            return redirect('carrito')
+    else:
+        form = RentalForm()
 
-    if cant_carpas_mayor4 > 0:
-        producto_id_mayor4 = '11'  
-        if producto_id_mayor4 in request.session['carrito']:
-            request.session['carrito'][producto_id_mayor4] += cant_carpas_mayor4
-        else:
-            request.session['carrito'][producto_id_mayor4] = cant_carpas_mayor4
-
-    # Guardar la sesión
-    request.session.modified = True
-    messages.success(request, "Reserva realizada con éxito")
-    # Redirigir al usuario al carrito
-    return redirect('carrito')
+    return render(request, 'precios.html', {'form': form})
 def agregar_producto(request, id):
     producto = Producto.objects.get(id=id)
 
